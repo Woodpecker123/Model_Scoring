@@ -37,9 +37,9 @@ pipeline {
         }
 
         stage('Authenticate') {
-            steps {
-                script {
-                    def authScript = '''
+    steps {
+        script {
+            def authScript = '''
 import requests
 import json
 
@@ -58,14 +58,17 @@ if r.status_code == 200:
     print(token)
 else:
     print(f"Error: {r.status_code}, Response: {r.text}")
-                    '''
+            '''
 
-                    writeFile file: 'auth.py', text: authScript
-                    def tokenOutput = sh(script: 'source venv/bin/activate && python3 auth.py', returnStdout: true)
-                    env.TOKEN = tokenOutput.trim()  // Store the token in an environment variable
-                }
-            }
+            writeFile file: 'auth.py', text: authScript
+            def tokenOutput = sh(script: 'source venv/bin/activate && python3 auth.py', returnStdout: true)
+            env.TOKEN = tokenOutput.trim()  // Store the token in an environment variable
+            
+            // Print the token to the console
+            echo "Access Token: ${env.TOKEN}" // Add this line
         }
+    }
+}
 
         stage('Get Models') {
             steps {
