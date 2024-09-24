@@ -117,6 +117,7 @@ import requests
 import json
 
 token = "${TOKEN}"
+echo 'token'
 headers = {
     'Content-Type': 'application/vnd.sas.microanalytic.module.step.input+json',
     'Authorization': 'Bearer ' + token
