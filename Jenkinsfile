@@ -45,7 +45,7 @@ username = "${USERNAME}"
 password = "${PASSWORD}"
 
 url = f"http://sit.woodpecker.com/SASLogon/oauth/token"
-authBody = f'grant_type=password&username={username}&password={password}'
+authBody = f'grant_type=password&username=akash&password=akash@2024'
 headersAuth = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'}
 
 r = requests.post(url, data=authBody, headers=headersAuth, auth=('sas.ec', ''))
