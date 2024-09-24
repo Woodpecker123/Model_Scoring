@@ -94,7 +94,11 @@ else:
 import pandas as pd
 
 df = pd.read_csv('hmeq.csv')
-sampled_hmeq = df.sample(n=100, random_state=42).drop(columns=['BAD']).dropna()
+if 'BAD' in df.columns:
+    sampled_hmeq = df.sample(n=100, random_state=42).drop(columns=['BAD']).dropna()
+else:
+    sampled_hmeq = df.sample(n=100, random_state=42).dropna()
+
 sampled_hmeq.to_csv('sampled_data.csv', index=False)
                     '''
 
