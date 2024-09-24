@@ -112,7 +112,7 @@ sampled_hmeq.to_csv('sampled_data.csv', index=False)
             }
         }
 
-        stage('Score Models') {
+                stage('Score Models') {
             steps {
                 script {
                     def scoreScript = '''
@@ -120,7 +120,7 @@ import pandas as pd
 import requests
 import json
 
-token = "${TOKEN}"  // Use the retrieved token
+token = "${TOKEN}"  # Use the retrieved token
 headers = {
     'Content-Type': 'application/vnd.sas.microanalytic.module.step.input+json',
     'Authorization': 'Bearer ' + token
@@ -160,6 +160,7 @@ for index, row in df.iterrows():
                 }
             }
         }
+
 
     }
 }
