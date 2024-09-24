@@ -1,14 +1,15 @@
 pipeline {
-  agent any
-  stages {
-    
-    // First stage: Print a message
-    stage('Hello') {
-      steps {
-        echo 'Hi There please work'
-      }
-    }
-      stage('Prepare Python Environment') {
+    agent any
+    stages {
+        
+        // First stage: Print a message
+        stage('Hello') {
+            steps {
+                echo 'Hi There please work'
+            }
+        }
+        
+        stage('Prepare Python Environment') {
             steps {
                 script {
                     // Create a virtual environment
@@ -23,7 +24,8 @@ pipeline {
                 }
             }
         }
-     stage('Setup') {
+
+        stage('Setup') {
             steps {
                 script {
                     // Define variables
@@ -33,7 +35,8 @@ pipeline {
                 }
             }
         }
-    stage('Authenticate') {
+
+        stage('Authenticate') {
             steps {
                 script {
                     def authScript = '''
@@ -45,7 +48,7 @@ username = "${USERNAME}"
 password = "${PASSWORD}"
 
 url = f"http://sit.woodpecker.com/SASLogon/oauth/token"
-authBody = f'grant_type=password&username=akash&password=akash@2024'
+authBody = f'grant_type=password&username={username}&password={password}'
 headersAuth = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'}
 
 r = requests.post(url, data=authBody, headers=headersAuth, auth=('sas.ec', ''))
@@ -59,10 +62,11 @@ else:
 
                     writeFile file: 'auth.py', text: authScript
                     def tokenOutput = sh(script: 'source venv/bin/activate && python3 auth.py', returnStdout: true)
-                    env.TOKEN = tokenOutput.trim()
+                    env.TOKEN = tokenOutput.trim()  // Store the token in an environment variable
                 }
             }
         }
+
         stage('Get Models') {
             steps {
                 script {
@@ -116,8 +120,7 @@ import pandas as pd
 import requests
 import json
 
-token = "${TOKEN}"
-echo 'token'
+token = "${TOKEN}"  // Use the retrieved token
 headers = {
     'Content-Type': 'application/vnd.sas.microanalytic.module.step.input+json',
     'Authorization': 'Bearer ' + token
@@ -158,6 +161,5 @@ for index, row in df.iterrows():
             }
         }
 
-    
-  }
+    }
 }
