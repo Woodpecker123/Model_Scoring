@@ -132,7 +132,7 @@ df
 # In[15]:
 
 
-sampled_hmeq
+#sampled_hmeq
 
 
 # In[19]:
