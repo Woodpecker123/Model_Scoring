@@ -120,7 +120,7 @@ except requests.exceptions.RequestException as e: print(f"Request failed: {e}")
 
 import pandas as pd
 
-df = pd.read_csv('C:/Users/sasdemo/downloads/hmeq.csv')
+df = pd.read_csv('hmeq.csv')
 
 
 # In[12]:
