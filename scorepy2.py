@@ -148,7 +148,17 @@ import json
 sampled_hmeq = df.sample(n=100, random_state=42)
 
 # Remove the 'BAD' column
-sampled_hmeq = sampled_hmeq.drop(columns=['BAD']).dropna()
+#sampled_hmeq = sampled_hmeq.drop(columns=['BAD']).dropna()
+
+# Assuming 'hmeq' is your original dataset loaded as a DataFrame
+# Sample 100 rows from the original dataset
+sampled_hmeq = df.sample(n=100, random_state=42)
+
+# Drop the 'BAD' column if it exists, and ignore errors if it doesn't
+sampled_hmeq = sampled_hmeq.drop(columns=['BAD'], errors='ignore').dropna()
+
+# Proceed with the rest of your code...
+
 
 # Define the headers for the scoring API
 headers = {
