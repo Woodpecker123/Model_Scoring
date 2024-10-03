@@ -4,7 +4,7 @@ from sasctl import publish_model
 from sasctl.services import microanalytic_score as mas
 from sasctl.services import model_repository as mr
 session = Session('https://sit.woodpecker.com','akash','akash@2024',verify_ssl=False)
-model = "RF_test"
+model = "LG_SAS"
 module = publish_model(model,'maslocal')
 print(module)
 import pandas as pd
