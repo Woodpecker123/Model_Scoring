@@ -10,7 +10,7 @@ pipeline {
      stage('Scoring Model') {
       steps {
        
-        sh 'python3 score_hmeq.ipynb'
+        sh 'python3 scorepy2.py'
       }
     }
 
