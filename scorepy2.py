@@ -2,21 +2,16 @@ import sasctl
 from sasctl import Session
 from sasctl import publish_model
 from sasctl.services import microanalytic_score as mas
-from sasctl.services import model_repository as mr
+from sasctl.services import model_repository as mrb
 session = Session('https://sit.woodpecker.com','akash','akash@2024',verify_ssl=False)
-model = "LG_SAS"
+model = "LG_Test"
 module = publish_model(model,'maslocal')
 print(module)
-import pandas as pd
-
-df = pd.read_csv('hmeq.csv')
-sampled_hmeq = df.sample(n=100, random_state=42)
-
-# Remove the unnecessery column
-sampled_hmeq = sampled_hmeq.drop(columns=['REASON','JOB']).dropna()
+df = pd.read_csv('donor_score_data.csv')
+sampled_df = df
 scored_results =[]
 
-for index , row in sampled_hmeq.iterrows():
+for index , row in sampled_df.iterrows():
     try:
         response = module.score(**row.to_dict())
         
@@ -36,4 +31,4 @@ for index , row in sampled_hmeq.iterrows():
         print(f"Error scoring row {index}:{e}")
         
 scored_df = pd.DataFrame(scored_results) 
-scored_df
+scored_df.head()
