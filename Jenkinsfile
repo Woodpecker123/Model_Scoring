@@ -1,16 +1,16 @@
 pipeline {
   agent any
   stages {
-    stage('checkversion') {
+    stage('CheckVersion') {
       steps {
           sh 'python3 --version'
           sh 'pip install pandas'
       }
     }
-     stage('run python') {
+     stage('Scoring Model') {
       steps {
        
-        sh 'python3 scorepy2.py'
+        sh 'python3 score_hmeq.ipynb'
       }
     }
 
