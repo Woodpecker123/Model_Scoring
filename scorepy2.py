@@ -5,7 +5,7 @@ from sasctl import publish_model
 from sasctl.services import microanalytic_score as mas
 from sasctl.services import model_repository as mrb
 session = Session('https://sit.woodpecker.com','akash','akash@2024',verify_ssl=False)
-model = "LG_Test"
+model = "LG_Test2"
 module = publish_model(model,'maslocal')
 print(module)
 df = pd.read_csv('donor_score_data.csv')
