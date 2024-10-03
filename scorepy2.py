@@ -12,7 +12,7 @@ import pandas as pd
 df = pd.read_csv('hmeq.csv')
 sampled_hmeq = df.sample(n=100, random_state=42)
 
-# Remove the unnesscery column
+# Remove the unnecessery column
 sampled_hmeq = sampled_hmeq.drop(columns=['REASON','JOB']).dropna()
 scored_results =[]
 
