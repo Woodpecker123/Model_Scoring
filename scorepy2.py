@@ -12,8 +12,8 @@ import pandas as pd
 df = pd.read_csv('hmeq.csv')
 sampled_hmeq = df.sample(n=100, random_state=42)
 
-# Remove the 'BAD' column
-sampled_hmeq = sampled_hmeq.drop(columns=['BAD','REASON','JOB']).dropna()
+# Remove the unnesscery column
+sampled_hmeq = sampled_hmeq.drop(columns=['REASON','JOB']).dropna()
 scored_results =[]
 
 for index , row in sampled_hmeq.iterrows():
