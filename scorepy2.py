@@ -8,7 +8,7 @@ session = Session('https://sit.woodpecker.com','akash','akash@2024',verify_ssl=F
 model = "LG_Test2"
 module = publish_model(model,'maslocal')
 print(module)
-df = pd.read_csv('donor_score_data.csv')
+df = pd.read_csv('donor_score.csv')
 sampled_df = df
 scored_results =[]
 
