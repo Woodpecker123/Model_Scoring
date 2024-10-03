@@ -1,4 +1,5 @@
 import sasctl
+import pandas as pd
 from sasctl import Session
 from sasctl import publish_model
 from sasctl.services import microanalytic_score as mas
